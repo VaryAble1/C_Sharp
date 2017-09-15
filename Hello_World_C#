@@ -1,0 +1,14 @@
+// Fig. 3.1: Welcome1.cs
+// Text-displaying application
+//VeryAble Visual C# Sixth Edition
+using System;
+
+class Welcome1
+{
+    //Main method begins execution of C# application
+    static void Main()
+    {
+        Console.WriteLine("Hello World!!\nWelcome to C# Programming!");
+    } // End Main
+
+} //End class Welcome1
