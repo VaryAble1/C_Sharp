@@ -7,15 +7,19 @@ class AccountTest
 {
     static void Main()
     {
+
+    
         // Create an account object and assign it to myAccount
         Account myAccount = new Account();
 
-        // Display myAccount's initial name (there isn't one yet)
-        Console.WriteLine($"Initial name is: {myAccount.GetName()}");
-  
+        // Getter
+        Console.WriteLine($"Initial name is: {myAccount.GetName()}"); // Display myAccount's initial name (there isn't one yet)
+
         // Prompt for, and read, the name, then put the name in the object
         Console.Write("Enter the name: "); // Prompt
         string theName = Console.ReadLine(); //Read the name
+
+        // Setter
         myAccount.SetName(theName); // Put theName in the myAccount object
   
   // Display the name stored in the myAccount object
