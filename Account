@@ -1,0 +1,21 @@
+// Account.cs
+// A simple Account class that contains a private instance
+// variable name and public methods to Set and Get name's value.
+// VeryAble 9-21-2017
+
+class Account
+{
+    private string name; // Instance variable
+
+    // Method that sets the account name in the object
+    public void SetName(string accountName)
+    {
+        name = accountName; // Store the account name
+    }
+
+    // Method that retrieves the account name from the object
+    public string GetName()
+    {
+        return name; // Returns name's value to this method's caller
+    }
+}
