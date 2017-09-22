@@ -10,12 +10,12 @@ class Dates
     public int month { get; set; } // Instance variable
     public int day { get; set; } // Instance variable
     public int year { get; set; } // Instance variable
-    public string date; // variable
+    public string DisplayDate; // variable
 
     // Account constructor that receives three parameters
     public Dates(int month, int day, int year)
     {
-        date = $"{month}/{day}/{year}";
+        DisplayDate = $"{month}/{day}/{year}";
     }
 
     // Name property
