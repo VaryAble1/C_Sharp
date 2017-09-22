@@ -27,7 +27,7 @@ class DatesTest
 
         // Display the initial balance of each object
         Console.WriteLine(
-            $"\n{date.date}\n");
+            $"\n{date.DisplayDate}\n");
 
         // Thanks for looking
     }
