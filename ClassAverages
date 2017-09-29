@@ -23,7 +23,7 @@ class ClassAverages
             gradeCounter = gradeCounter + 1; // increment counter
 
             // prompt for input and read grade from user
-            Console.Write("Enter grade, or -1 to quit");
+            Console.Write("Enter grade, or -1 to quit: ");
             grade = int.Parse(Console.ReadLine());
         }
 
