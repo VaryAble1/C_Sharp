@@ -10,7 +10,7 @@ class Interest
         double rate = 0.05; // interest rate
 
         // display header
-        Console.WriteLine("Year   Amount on deposite");
+        Console.WriteLine("  Year         Amount on deposite");
 
         // Calculate amount on deposite for each of ten years
         for (int year = 1; year <= 10; ++year)
