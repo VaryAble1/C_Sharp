@@ -1,4 +1,5 @@
 // Midterm 10/19/2017 Truckee Meadows Community College
+// Edited 10/20/2017
 // Branden Lawrence
 
 /* Create an application that will allow the user to enter an order, delete an order, 
@@ -128,7 +129,7 @@ namespace OrderTest
 						break;
 
 				}
-			} while (endMenu = true || selection != 'D');
+			} while (endMenu = false || selection != 'D');
 		}
 
 		/**
