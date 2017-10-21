@@ -110,7 +110,7 @@ namespace OrderTest
         // Create a method called “DisplayOrder” that uses all of the properties created in step 3 to print the order out to the console.
         public static void DisplayOrder(string CustomerName, int OrderNum, string Item1, string Item2, string Item3, string Item4, decimal SubTotal)
         {
-            Console.WriteLine($"\nHello {CustomerName}! Your order #{OrderNum} has items: {Item1}, {Item2}, {Item3}, and {Item4}. Your subtotal today is: {SubTotal}\n");
+            Console.WriteLine($"\nHello {CustomerName}! Your order #{OrderNum} has items: {Item1}, {Item2}, {Item3}, and {Item4}. Your subtotal today is: {SubTotal:C}\n");
         }
     }
     // Thanks for looking
