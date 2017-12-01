@@ -4,12 +4,13 @@
     (30 pts.) Somewhere in the program there needs to be an if/else, a switch construct, a for loop, and either a while or a do/while loop.
     (10 pts.) You need to use a single dimensional array to store and display some part of the program.
     (10 pts.) You need to use a multi-dimensional array to store and display some part of the game as well.
-    ~(30 pts.) You will need to use at least 1 additional class other than the class with the main method. The class needs to contain at least 3 different private members (variable/attribute) and public getter and setter properties for those members. You can add as many other methods as you want to the class as well, but you must show the default constructor and an overloaded constructor. (Feel free to use as many classes as you wish for other parts of the program!)
-    (25 pts.) There should be at least 3 methods included in the main class.
-    (5 pts.) Use the Random class somewhere to create and use a Random number.
-    (10 pts.) Use a static variable and a static method to access and change that variable somewhere in the code.
+    (30 pts.) You will need to use at least 1 additional class other than the class with the main method. The class needs to contain at least 3 different private members (variable/attribute) and public getter and setter properties for those members. You can add as many other methods as you want to the class as well, but you must show the default constructor and an overloaded constructor. (Feel free to use as many classes as you wish for other parts of the program!)
+    *(25 pts.) There should be at least 3 methods included in the main class.
+    *(5 pts.) Use the Random class somewhere to create and use a Random number.
+    *(10 pts.) Use a static variable and a static method to access and change that variable somewhere in the code.
     (10 pts.) The output for the program should be appropriate for its usage and must at least display the information in both arrays and information from or about the class that is created.
 */using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace CrapsGame
@@ -40,16 +41,23 @@ namespace CrapsGame
             BoxCars = 12
         }
 
+        private static int die1 = 0; // Initialize variable for first die
+        private static int die2 = 0; // Initialize variable for second die
+        private static int sum = 0; // Initialize variable for the sum of both dice
         private static int starter = 0; // Variable for the first scored point
         private static int myPoint = 0; // Point if no win or loss on first roll
         private static int response = 0; //Initiate variable for response
         private static int credit = 0; // Current credits
         private static int bet = 0; // Betting credits
-        private static string option = null;
+        private static int counted = 1; // Counting rounds for Statistics in Main Menu
+        private static string option = null; // To catch response from menus in string format
+
+
+        private static int[,] mArray = new int[1,3];
 
         // To display negative currencies
 
-            
+
         public static void Main()
         {
 
@@ -57,8 +65,9 @@ namespace CrapsGame
             Console.Title = "Craps";
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Yellow;
-           
-            
+
+            // populate a List of ints
+            var earnings = new List<int>();
 
             // First player ------------------------------------------------------------------------------------------------------
 
@@ -69,7 +78,7 @@ namespace CrapsGame
             // Prompt for, then read, input
             Console.Write($"\nPlease enter your last name: ");
             string lastName1 = Console.ReadLine();
-            
+
 
             // Create a player object and assign it to a player  -----------------------------------------------------------------
             Player player1 = new Player(firstName1, lastName1);
@@ -106,7 +115,7 @@ namespace CrapsGame
                 Console.WriteLine("\nMaybe another time then.");
             }
 
-// ------------------------------------------------- GAME ---------------------------------------------------------------------------
+            // ------------------------------------------------- GAME ---------------------------------------------------------------------------
 
             while (response != 2 && response != 3) // Conditional AND
             {
@@ -114,11 +123,11 @@ namespace CrapsGame
                 {
                     case 1: // Yes
                         Menu();
-                        
+
                         // Start Game -----------------------------------------------------------------------------------------------
                         if (response == 1) // Yes
                         {
-                            
+
                             // GameStatus can contain Continue, Won, or Lost
                             gameStatus = Status.Continue;
 
@@ -126,7 +135,7 @@ namespace CrapsGame
                             Console.WriteLine("\nHow much would you like to bet? ");
                             Console.Write("---> $"); // Where they enter their bet
                             string betting = Console.ReadLine(); // Place response into variable
-                            
+
                             // Exceptions will continue with last option chosen
                             try
                             {
@@ -194,15 +203,9 @@ namespace CrapsGame
                             {
                                 credit += bet; // Add bet to current credits
                                 Console.WriteLine("\n\tYou win!\tWinner Winner Chicken Dinner!!\n");
-                                Console.Write($"You are {credit:C} ");
-                                //if (credit > 0.00) // Above $0
-                                //{
-                                //    Console.WriteLine("richer in credits");
-                                //}
-                                //else if (credit < 0.00) // Below $0
-                                //{
-                                //    Console.WriteLine("in the hole");
-                                //}
+                                Console.Write($"You have {credit:C} in credits");
+                               
+                                earnings.Add(credit); // Add credit to earnings List
 
                                 // Press enter to continue
                                 Console.ReadLine();
@@ -212,6 +215,8 @@ namespace CrapsGame
                                 Console.WriteLine("\nYou lose.\n");
                                 credit -= bet; // Subtract bet from current credits
                                 Console.WriteLine($"You have {credit:C} in credits");
+                               
+                                earnings.Add(credit); // Add credit to earnings List
                             }
 
                             break; // From nested case
@@ -233,13 +238,13 @@ namespace CrapsGame
                     case 3: // Help
 
                         Instructions(); // Instructions
-                        
+
                         break;
                 }
 
                 if (response != 2)
                 {
-                    Console.WriteLine("\nMain Menu:\n1:Play Again\n2:Exit\n3:Instructions\n");
+                    Console.WriteLine("\nMain Menu:\n1:Play Again\n2:Exit\n3:Instructions\n4:Statistics\n");
                     Console.Write("---> "); // Where they enter
                     option = Console.ReadLine(); // Place response into variable
 
@@ -252,18 +257,41 @@ namespace CrapsGame
                     {
                         Console.WriteLine("\nWe'll take that as a yes...\n"); // Catch all letters
                     }
-                    
+
                     if (response == 3) // Help
                     {
                         Instructions(); // Instructions method
                         response = 1; // Loop back to game
+                    }
+                    else if (response == 4)
+                    {
+                        foreach (var credit in earnings)
+                        {
+                            Console.WriteLine($"\n\tRound {counted}:");// Display game count
+                            Console.Write($"\n\t{credit:C}"); // Display credits at the end of game
+                            if (credit < 1 && credit > -1) // If credits equal $0.00
+                            {
+                                Console.WriteLine(" Flat");
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                            }
+                            
+                            ++counted; // Increase game count
+                        }
+
+                        foreach (var roll in mArray)
+                        {
+                            Console.WriteLine(roll);
+                        }
                     }
                 }
             }
             // Default
             Console.WriteLine("\nGoodbye.\n");
         }
- // ----------------------------------------------------- Methods -------------------------------------------------------------------
+        // ----------------------------------------------------- Methods -------------------------------------------------------------------
 
         private static int[] die = new int[15]; // Total number of Dice
 
@@ -272,10 +300,41 @@ namespace CrapsGame
         static int RollDice()
         {
             // Pick random die value
-            int die1 = randomNumbers.Next(1, 7); // First die roll
-            int die2 = randomNumbers.Next(1, 7); // Second die roll
+            die1 = randomNumbers.Next(1, 7); // First die roll
+            die2 = randomNumbers.Next(1, 7); // Second die roll
 
-            int sum = die1 + die2; // Sum of die values
+            sum = die1 + die2; // Sum of die values
+            int placeHolder = 0; // Initialize placeHolder
+
+            try
+            {
+                //mArray = new int[,,] { { die1, die2, sum } };
+                for (var column = 0; column < 10; ++column)
+                {
+                    for (var row = 0; row < 3; ++row)
+                    {
+                        if (row == 1)
+                        {
+                            placeHolder = die1;
+                        }
+                        else if (row == 2)
+                        {
+                            placeHolder = die2;
+                        }
+                        else if (row == 3)
+                        {
+                            placeHolder = sum;
+                        }
+
+                        mArray[column, row] = placeHolder;
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Out of bounds");
+            }
+            
 
             // Display results of this roll
             Console.Write($"You rolled a {die1} and {die2} which equal {sum}");
@@ -333,42 +392,42 @@ namespace CrapsGame
             return response;
         }
 
-         // Read the instructions method
-         private static void Instructions()
-         {
-             // Instructions
-             Console.Write("\nINSTRUCTIONS:\t(press enter to continue)\n" + "\n");
+        // Read the instructions method
+        private static void Instructions()
+        {
+            // Instructions
+            Console.Write("\nINSTRUCTIONS:\t(press enter to continue)\n" + "\n");
 
-             // Press enter to continue
-             Console.ReadLine();
+            // Press enter to continue
+            Console.ReadLine();
 
-             // Instructions
-             Console.Write($"\nYou will roll two dice. Each die has six faces, which contain one, two, three, four, five, and six spots, respectively.");
+            // Instructions
+            Console.Write($"\nYou will roll two dice. Each die has six faces, which contain one, two, three, four, five, and six spots, respectively.");
 
-             // Press enter to continue
-             Console.ReadLine();
+            // Press enter to continue
+            Console.ReadLine();
 
-             Console.Write("\nAfter the dice have come to rest, the sum of the spots on the two upward faces is calculated. ");
+            Console.Write("\nAfter the dice have come to rest, the sum of the spots on the two upward faces is calculated. ");
 
-             // Press enter to continue
-             Console.ReadLine();
+            // Press enter to continue
+            Console.ReadLine();
 
-             Console.Write("\nIf the sum is 7 or 11 on the first throw, you win. \nIf the sum is 2, 3, or 12 on the first throw (called \"craps\"), you lose (i.e. \"the house\" wins). ");
+            Console.Write("\nIf the sum is 7 or 11 on the first throw, you win. \nIf the sum is 2, 3, or 12 on the first throw (called \"craps\"), you lose (i.e. \"the house\" wins). ");
 
-             // Press enter to continue
-             Console.ReadLine();
+            // Press enter to continue
+            Console.ReadLine();
 
-             Console.Write("\nIf the sum is 4, 5, 6, 8, 9, or 10 on the first throw, that sum becomes your \"point.\" ");
+            Console.Write("\nIf the sum is 4, 5, 6, 8, 9, or 10 on the first throw, that sum becomes your \"point.\" ");
 
-             // Press enter to continue
-             Console.ReadLine();
+            // Press enter to continue
+            Console.ReadLine();
 
-             Console.Write("\nTo win, you must continue rolling the dice until you \"make your point\" (i.e. roll that same point value). " +
-                "\nYou lose by rolling a 7 before making your point.\n");
+            Console.Write("\nTo win, you must continue rolling the dice until you \"make your point\" (i.e. roll that same point value). " +
+               "\nYou lose by rolling a 7 before making your point.\n");
 
-             // Press enter to continue
-             Console.ReadLine();
-         }
+            // Press enter to continue
+            Console.ReadLine();
+        }
     }
-// Thanks for looking
+    // Thanks for looking
 }
