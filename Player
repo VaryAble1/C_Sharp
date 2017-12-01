@@ -1,0 +1,61 @@
+// Player class for getters and setters of player's name
+
+using System;
+using System.Globalization;
+
+namespace CrapsGame
+{
+	class Player
+	{
+		private string NameFirst { get; set; } // Instance variable
+		private string NameLast { get; set; } // Instance variable
+		public string Name { get; private set; } // Instance variable
+        //private string name = null;
+
+        // Account constructor that receives two parameters
+        public Player(string firstName, string lastName)
+        {
+
+            string fName = Capitalise(firstName);
+            string lName = Capitalise(lastName);
+            Name = fName + " " + lName;
+
+           
+        }
+
+        public string Capitalise(string str)
+        {
+            if (String.IsNullOrEmpty(str))
+                return String.Empty;
+            return Char.ToUpper(str[0]) + str.Substring(1).ToLower();
+        }
+
+        // Name property
+        public string FirstName
+		{
+			get
+			{
+				return NameFirst;
+			}
+
+			private set // Can only be used within the class
+			{
+				NameFirst = value;
+			}
+		}
+
+		public string LastName
+		{
+			get
+			{
+				return NameLast;
+			}
+
+			private set // Can only be used within the class
+			{
+				NameLast = value;
+			}
+		}
+	}
+// Thanks for looking
+}
