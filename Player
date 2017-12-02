@@ -10,18 +10,20 @@ namespace CrapsGame
         private string NameFirst { get; set; } // Instance variable
         private string NameLast { get; set; } // Instance variable
         public string Name { get; private set; } // Instance variable
-        //private string name = null;
+        private string firstName; // Instance variable
+        private string lastName; // Instance variable
 
         // Account constructor that receives two parameters
         public Player(string firstName, string lastName)
         {
 
-            string fName = Capitalise(firstName);
-            string lName = Capitalise(lastName);
-            Name = fName + " " + lName;
+            this.firstName = Capitalise(firstName);
+            this.lastName = Capitalise(lastName);
+            Name = this.firstName + " " + this.lastName;
             
         }
 
+        // Capitalize first character of each name
         public string Capitalise(string str)
         {
             if (String.IsNullOrEmpty(str)) // If left blank
