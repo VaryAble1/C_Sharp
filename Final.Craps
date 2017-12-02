@@ -302,7 +302,7 @@ namespace CrapsGame
                 }
             }
             // Default
-            Console.WriteLine("\nGoodbye.\n");
+            Console.WriteLine($"\n Ok. Goodbye {player1.Name}.\n");
         }
         // ----------------------------------------------------- Methods -------------------------------------------------------------------
 
