@@ -50,7 +50,6 @@ namespace CrapsGame
         private static int response = 0; //Initiate variable for response
         private static int credit = 0; // Current credits
         private static int bet = 0; // Betting credits
-        private static int counted = 0; // Counting rounds for Statistics in Main Menu
         private static int wins = 0; // Initialize variable for wins
         private static int loses = 0; // initialize variable for loses
         private static string option = null; // To catch response from menus in string format
@@ -274,8 +273,9 @@ namespace CrapsGame
                     {
                         // Mulitideminsional array
                         int[,] stats = new int[,] { { wins }, { loses } };
+                        int counted = 0; // Counting rounds for Statistics in Main Menu
 
-                        Console.WriteLine($"\tStatistics for {player1.Name}:");
+        Console.WriteLine($"\tStatistics for {player1.Name}:");
                         foreach (var credit in earnings)
                         {
                             Console.WriteLine($"\n\tRound {counted + 1}:");// Display game count
@@ -311,7 +311,7 @@ namespace CrapsGame
         }
         // ----------------------------------------------------- Methods -------------------------------------------------------------------
 
-        private static int[] die = new int[15]; // Total number of Dice
+        private static int[] die = new int[2]; // Total number of Dice
 
         // Roll Dice Method
         // Roll dice, calculate sum and display results
