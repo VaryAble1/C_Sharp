@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Shape
+{
+    class ShapeTest
+    {
+        static void Main(string[] args)
+        {
+            Circle c = new Circle("red", true);
+            c.DSI();
+            //c.Radius = 3.4;
+            Console.WriteLine("Diameter: {0}", c.FindDiameter());
+            Console.WriteLine(c.ToString());
+        }
+    }   
+//Thanks for looking
+}
