@@ -1,28 +1,16 @@
-using System;
-
 namespace Betsy
 {
     class Chat : English
     {
-        // This class combines English with Chat
-        public static string Hear(string you)
-        {
-            // User input
-            Console.Write("\n~~~> ");
-            you = Console.ReadLine();
-
-            return you;
-        }
-
         // Think about what what was said
         public static string Think(string you, string temp, string me)
         {
             // Think
-            if (you == "Hello")
+            if (you == "Hello" || you == "Goodbye")
             {
-                me = "Hello"; // Output
+                me = you; // Output
             }
-            else if (you != "Hello")
+            else if (you != "Hello" || you != "Goodbye")
             {
                 me = null;
 
@@ -32,19 +20,10 @@ namespace Betsy
                     me = "I don't know what to say.";
                 }
             }
-           
-            
+
+            // case (you) Build out case of responses
 
             return me;
-        }
-
-        // Talk
-        public static void Speak(string me)
-        {
-            // Response
-            Console.WriteLine($"\n---> {me}");
-
-            Console.WriteLine("\n"); // New line before end
         }
     }
 // thanks for looking
