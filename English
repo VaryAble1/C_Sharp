@@ -1,3 +1,5 @@
+using System;
+
 namespace Betsy
 {
     class English
@@ -6,6 +8,25 @@ namespace Betsy
         public static string you = null;
         public static string me = null;
         public static string temp = null;
+
+        public static string Hear(string you)
+        {
+            // User input
+            Console.Write("\n~~~> ");
+            you = Console.ReadLine();
+
+            return you;
+        }
+
+        // Talk
+        public static void Speak(string me)
+        {
+            // Response
+            Console.WriteLine($"\n---> {me}");
+
+            Console.WriteLine("\n"); // New line before end
+        }
+
     }
 // Thanks for looking
 }
