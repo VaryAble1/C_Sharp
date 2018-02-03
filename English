@@ -1,0 +1,11 @@
+namespace Betsy
+{
+    class English
+    {
+        // Members
+        public static string you = null;
+        public static string me = null;
+        public static string temp = null;
+    }
+// Thanks for looking
+}
