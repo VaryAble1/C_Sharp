@@ -4,11 +4,12 @@ namespace Betsy
 {
     class English
     {
-        // Members
+        // Members -------------------------------------------------------------------------------------
         public static string you = null;
         public static string me = null;
         public static string temp = null;
 
+        // Hear ----------------------------------------------------------------------------------------
         public static string Hear(string you)
         {
             // User input
@@ -18,7 +19,7 @@ namespace Betsy
             return you;
         }
 
-        // Talk
+        // Talk ----------------------------------------------------------------------------------------
         public static void Speak(string me)
         {
             // Response
@@ -27,6 +28,10 @@ namespace Betsy
             Console.WriteLine("\n"); // New line before end
         }
 
+        // virtual auto-implemented property. Overrides can only
+        // provide specialized behavior if they implement get and set accessors.
+        public virtual string Name { get; set; }
+        
     }
 // Thanks for looking
 }
