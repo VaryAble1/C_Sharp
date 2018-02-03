@@ -2,13 +2,17 @@ namespace Betsy
 {
     class Chat : English
     {
+        // Variable
+        private static string name;
+
         // Think about what what was said
         public static string Think(string you, string temp, string me)
         {
             // Think
             if (you == "Hello" || you == "Goodbye")
             {
-                me = you; // Output
+                me = you + name; // Output
+
             }
             else if (you != "Hello" || you != "Goodbye")
             {
@@ -21,9 +25,30 @@ namespace Betsy
                 }
             }
 
-            // case (you) Build out case of responses
+            //case (you) Make case for various responses
 
             return me;
+        }
+
+        // Override auto-implemented property with ordinary property
+        // to provide specialized accessor behavior.
+        public override string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    name = value;
+                }
+                else
+                {
+                    name = "Unknown";
+                }
+            }
         }
     }
 // thanks for looking
