@@ -1,0 +1,51 @@
+using System;
+
+namespace Betsy
+{
+    class Chat : English
+    {
+        // This class combines English with Chat
+        public static string Hear(string you)
+        {
+            // User input
+            Console.Write("\n~~~> ");
+            you = Console.ReadLine();
+
+            return you;
+        }
+
+        // Think about what what was said
+        public static string Think(string you, string temp, string me)
+        {
+            // Think
+            if (you == "Hello")
+            {
+                me = "Hello"; // Output
+            }
+            else if (you != "Hello")
+            {
+                me = null;
+
+                // Defualt
+                if (me == null)
+                {
+                    me = "I don't know what to say.";
+                }
+            }
+           
+            
+
+            return me;
+        }
+
+        // Talk
+        public static void Speak(string me)
+        {
+            // Response
+            Console.WriteLine($"\n---> {me}");
+
+            Console.WriteLine("\n"); // New line before end
+        }
+    }
+// thanks for looking
+}
