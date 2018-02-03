@@ -13,13 +13,14 @@ namespace Betsy
 {
     class Inheritance_Test : Chat //: English
     {
+
         static void Main(string[] args)
         {
            while (me != "Goodbye")
            {
                 // Input
-                you = Hear(null);
-
+                 you = Hear(you);
+                
                 // Process
                 me = Think(you, temp, me);
 
