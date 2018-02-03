@@ -19,9 +19,6 @@ namespace Betsy
            {
                 // Input
                 you = Hear(null);
-                
-                // Testing
-                //me = "testing";
 
                 // Process
                 me = Think(you, temp, me);
