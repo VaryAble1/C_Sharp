@@ -1,6 +1,9 @@
-// Base class
+// Base class 2-2-2018
 // Ideally Athena will take what you say, search through a database as to what to respond with, and return that.
 using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Athena
 {
@@ -8,9 +11,25 @@ namespace Athena
     {
         // Variable
         protected static string name;
+        public int zipcode;
+
+        public override string Hear(string you) // Overriden to add welcome message in-case of initial contact
+        {
+            if (you == null)
+            {
+                you = "Start"; // Welcome message
+            }
+            else
+            {
+                // User input
+                Console.Write("\n~~~> ");
+                you = Console.ReadLine();
+            }
+            return you;
+        }
 
         // Think about what what was said
-        public static string Think(string you, string temp, string me)
+        public override string Think(string you, string temp, string me) // Override for specialization
         {
             // Think Testing
             //if (you == "Hello" || you == "Goodbye")
@@ -27,34 +46,50 @@ namespace Athena
             //    }
             //}
 
-// Think -----------------------------------------------------------------------------------------------
-           switch (you) // Based on what "you" say
+            // Think -----------------------------------------------------------------------------------------------
+            switch (you) // Based on what "you" say
             {
-// Hello -----------------------------------------------------------------------------------------------
+                case "Start":
+                    me = "Welcome! To begin, say \"Hello\" ";
+                    break;
+                // Hello -----------------------------------------------------------------------------------------------
                 case "Hello": // "you" say
                     Console.WriteLine("\n---> Hello, what is your first name?\n"); // "me" say
                     Console.Write("\n~~~> "); // Promt "you"
                     name = Console.ReadLine(); // your response
                     me = $"Nice to meet you {name}"; // "me" say
                     break;
-// Thank you -------------------------------------------------------------------------------------------
+                // Thank you -------------------------------------------------------------------------------------------
                 case "Thank you": // "you" say
                     me = $"You are welcome {name}."; // "me" say
                     break;
-// My Name ---------------------------------------------------------------------------------------------
-                case "What is your name": // "you" say
+                // My Name ---------------------------------------------------------------------------------------------
+                case "What is your name?": // "you" say
                     me = "My name is Athena"; // "me" say
                     break;
-// Goodbye ---------------------------------------------------------------------------------------------
+                // Goodbye ---------------------------------------------------------------------------------------------
                 case "Goodbye": // "you" say
                     me = you + " " + name; // "me" say
                     break;
-// Default ---------------------------------------------------------------------------------------------
-                default:
-                    me = "I don't know what to say."; // "me" say
+                // Weather ---------------------------------------------------------------------------------------------
+                case "What is the weather like?": // "you" say
+                    English.Speak("What is your zipcode?"); // "me" say
+                    Console.Write("\n~~~> "); // Promt "you"
+                    zipcode = int.Parse(Console.ReadLine()); // your response
+                    me = "Let me look"; // "me" say
+                    // Action
+                    Weather(zipcode); // Check the weather
                     break;
-           }
-
+                // You Too
+                case "You too":
+                    me = "How is your day going?";
+                    break;
+                // Default ---------------------------------------------------------------------------------------------
+                default:
+                    me = "Can you repeat that?"; // "me" say
+                    break;
+            }
+            // Return statement
             return me;
         }
 
@@ -79,6 +114,80 @@ namespace Athena
                 }
             }
         }
+
+        public string Weather(int zipcode)
+        {
+            string weather = null;
+            string command = null;
+            return weather;
+
+
+            // The string that will represent the entered command.
+
+            //cc <Location> - Current conditions
+            //fc <Location> - Forecast conditions
+            //ex - Exit
+
+            // The ex command will automatically exit the application.
+
+
+
+            // Current conditions
+            Conditions conditions = new Conditions();
+                                conditions = Weather.GetCurrentConditions(input.Substring(2, input.Length - 2));
+                                if (conditions != null)
+                                {
+                                    Console.WriteLine("Conditions: " + conditions.Condition);
+                                    Console.WriteLine("Temperature (F): " + conditions.TempF);
+                                    Console.WriteLine("Temperature (C): " + conditions.TempC);
+                                    Console.WriteLine("Humidity: " + conditions.Humidity);
+                                    Console.WriteLine("Wind: " + conditions.Wind);
+                                    Console.WriteLine();
+                                }
+
+	                            else
+                                {
+                                    Console.WriteLine("There was an error processing the request.");
+                                    Console.WriteLine("Please, make sure you are using the correct location or try again later.");
+                                    Console.WriteLine();
+                                }
+                                break;
+                            }
+
+	                    //case "FC":
+                     //       {
+                     //           List<Conditions> conditions = new List<Conditions>();
+                     //           conditions = Weather.GetForecast(input.Substring(2, input.Length - 2));
+                            
+                     //           if (conditions != null)
+                     //           {
+                     //               foreach (Conditions c in conditions)
+                     //               {
+                     //                   Console.WriteLine("Day: " + c.DayOfWeek);
+                     //                   Console.WriteLine("Conditions: " + c.Condition);
+                     //                   Console.WriteLine("Temperature (High): " + c.High);
+                     //                   Console.WriteLine("Temperature (Low): " + c.Low);
+                     //                   Console.WriteLine();
+                     //               }
+                     //           }
+	                    //        else
+                     //           {
+                     //               Console.WriteLine("There was an error processing the request.");
+                     //               Console.WriteLine("Please, make sure you are using the correct location or try again later.");
+                     //           break;
+                     //       }
+
+	                    //case "EX":
+                     //       {
+                     //           Console.WriteLine("Application closing...");
+                     //           break;
+                     //       }
+                      
+                    }
+	            // Exit the application with exit code 0 (no errors).
+                Environment.Exit(0);
+            }
+    }
     }
 // thanks for looking
 }
