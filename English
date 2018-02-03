@@ -1,5 +1,5 @@
-// Indirect Base Class
-using System;
+// Indirect Base Class 2-2-2018
+using System; 
 
 namespace Athena
 {
@@ -16,8 +16,8 @@ namespace Athena
 
         public virtual string Name { get; set; } // Marked "virtual" to be overriden in a derived class
 
-        // Hear ----------------------------------------------------------------------------------------
-        public static string Hear(string you)
+// Hear ------------------------------------------------------------------------------------------------
+        public virtual string Hear(string you) // Virtual to run on normal bases or change for specialization
         {
             // User input
             Console.Write("\n~~~> ");
@@ -26,7 +26,13 @@ namespace Athena
             return you;
         }
 
-        // Talk ----------------------------------------------------------------------------------------
+// Think -----------------------------------------------------------------------------------------------
+        public virtual string Think(string you, string temp, string me) // Virtual for Chat class to override
+        {
+            return " This is a test. ";
+        }
+
+// Talk ------------------------------------------------------------------------------------------------
         public static void Speak(string me)
         {
             // Response
