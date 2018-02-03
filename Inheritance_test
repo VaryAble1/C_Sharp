@@ -1,5 +1,5 @@
-/* In Visual Studio create a project called "Inheritance Test." 
- * Think about inheritance. Come up with a "base class." 
+ /* ^ In Visual Studio create a project called "Inheritance Test." 
+ *  ^ Think about inheritance. Come up with a "base class." 
  * Create a base class with at least 3 public members and at least 3 public methods. Declare some of the methods as "virtual." 
  * In your comments tell me why we are using the keyword "virtual." 
  * Your methods do not have to return anything, they can just write information out to the console.
@@ -9,25 +9,25 @@
  * Display all of the info for each object including the members and methods from the base and derived classes.
  */
 
-namespace Betsy
-{
-    class Inheritance_Test : Chat //: English
+    namespace Athena
     {
-
-        static void Main(string[] args)
+        class Inheritance_Test : Chat //: English
         {
-           while (me != "Goodbye")
-           {
-                // Input
-                 you = Hear(you);
-                
-                // Process
-                me = Think(you, temp, me);
 
-                // Respond
-                Speak(me); // Say after Thinking
-           }
+            static void Main(string[] args)
+            {
+                while (me != $"Goodbye {name}")
+                {
+                    // Input
+                    you = Hear(you); // Propt "you" to speak
+
+                    // Process
+                    me = Think(you, temp, me); // Think about what "you" said
+
+                    // Respond
+                    Speak(me); // Say after Thinking
+                }
+            }
         }
-    }
 // Thanks for looking
-}
+    }
