@@ -12,13 +12,13 @@ namespace ShapeTest
 			c.GetArea();
 			c.ChangeColor("Red");
 
-			//Square s = new Square();
-			//c.GetArea();
-			//c.ChangeColor("Green");
+			Square s = new Square();
+			s.GetArea();
+			s.ChangeColor("Green");
 
-			//Triangle t = new Triangle();
-			//c.GetArea();
-			//c.ChangeColor("Black");
+			Triangle t = new Triangle();
+			t.GetArea();
+			t.ChangeColor("Black");
 
 			// The change color method should change the color of the shape. Demonstrate this working.
 		}
