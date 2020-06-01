@@ -1,5 +1,5 @@
 # C#
-## C# Windows programming code
+## Windows programming code
 
 ###### Book: 
 ```Visual C#, How to program. Deitel. Pearson Education, Sixth edition
